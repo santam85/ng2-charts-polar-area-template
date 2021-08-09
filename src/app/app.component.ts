@@ -1,31 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { SingleDataSet, Label } from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { Component } from '@angular/core';
+import { ChartConfiguration } from 'chart.js';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent {
+  title = 'ng2-charts-demo';
+
   // PolarArea
-  public polarAreaChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
-  public polarAreaChartData: SingleDataSet = [300, 500, 100, 40, 120];
+  public polarAreaChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales' ];
+  public polarAreaChartDatasets: ChartConfiguration<'polarArea'>['data']['datasets'] = [
+    { data: [ 300, 500, 100, 40, 120 ] }
+  ];
   public polarAreaLegend = true;
 
-  public polarAreaChartType: ChartType = 'polarArea';
+  public polarAreaOptions: ChartConfiguration<'polarArea'>['options'] = {
+    responsive: false,
+  };
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
 }
